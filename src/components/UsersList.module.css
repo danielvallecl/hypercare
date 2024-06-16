@@ -1,0 +1,15 @@
+.grid-container {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: 1fr 1fr 1fr;
+
+  /* Tablet */
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* Phones */
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+}

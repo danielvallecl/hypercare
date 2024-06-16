@@ -1,0 +1,62 @@
+.userCard {
+  max-width: 90%;
+  margin: 2vh auto;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.userCard:hover {
+  transform: scale(1.05);
+  transition: transform 0.2s ease-in-out;
+}
+
+.userCardMedia {
+  width: 50vw;
+  max-width: 100%;
+  padding-top: 10%;
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 2vh auto;
+}
+
+.userCardMedia img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.userCardContent {
+  padding: 2vh 4vw;
+}
+
+.userCardTitle {
+  font-size: 2.5vw;
+  margin-bottom: 1vh;
+}
+
+.userCardDescription {
+  color: #666;
+  font-size: 2vw;
+}
+
+.userCardButton {
+  margin-top: 2vh;
+  font-size: 2vw;
+}
+
+.userCardModal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90vw;
+  max-width: 90%;
+  background-color: white;
+  box-shadow: 24px;
+  padding: 4vw;
+}

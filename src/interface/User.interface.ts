@@ -1,3 +1,4 @@
+// Declare User interface
 export interface User {
   avatar: string;
   description: string;
@@ -7,6 +8,5 @@ export interface User {
   join_date: string;
   lastname: string;
   role: string;
-  user: object,
   username: string;
 }

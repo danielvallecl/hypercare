@@ -1,31 +1,25 @@
-import React from 'react'
+import React from 'react';
+import { CircularProgress } from '@mui/material';
+import styles from './Image.module.css';
 
 interface ImageProps {
-  src: string
-  alt: string
+  src: string;
+  alt: string;
+  className?: string;
 }
 
-const Image: React.FC<ImageProps> = ({ src, alt }) => {
+const Image: React.FC<ImageProps> = ({ src, alt, className }) => {
+  if (!src) {
+    return (
+      <CircularProgress role="progressbar" />
+    );
+  }
+
   return (
-    <div style={styles.container}>
-      <img src={src} alt={alt} style={styles.image} />
+    <div className={styles.container}>
+      <img src={src} alt={alt} className={`${styles.image} ${className}`} />
     </div>
-  )
-}
+  );
+};
 
-const styles = {
-  container: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '100%',
-    height: '25%',
-  } as React.CSSProperties,
-  image: {
-    display: 'block',
-    maxWidth: '100%',
-    height: '25%',
-  } as React.CSSProperties,
-}
-
-export default Image
+export default Image;

@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
 import { User } from '../interface/User.interface';
-import { Card, CardContent, CardMedia, Typography, Button, Modal, Box } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
+import { Box, Card, CardContent, Typography, Button, CardActions } from '@mui/material';
+import UserModal from './UserModal.tsx';
 import styles from './UserCard.module.css';
-
+import Image from './Image';
 interface UserCardProps {
   user: User;
 }
 
 const UserCard: React.FC<UserCardProps> = ({ user }) => {
-  const theme = useTheme();
-
+  
   const [openModal, setOpenModal] = useState(false);
-
+ 
   const handleOpenModal = () => {
     setOpenModal(true);
   };
@@ -22,42 +21,35 @@ const UserCard: React.FC<UserCardProps> = ({ user }) => {
   };
 
   const truncateDescription = (description: string, maxLength: number) => {
-    if (description.length > maxLength) {
+    if (description?.length > maxLength) {
       return description.substring(0, maxLength) + '...';
     }
     return description;
   };
 
   return (
-    <Card className={styles.userCard}>
-      <div className={styles.userCardMedia}>
-        <img src={user.avatar} alt={`${user.firstname} ${user.lastname}`} />
-      </div>
-      <CardContent className={styles.userCardContent}>
-        <Typography gutterBottom variant="h5" component="div" className={styles.userCardTitle}>
-          {user.firstname} {user.lastname}
-        </Typography>
-        <Typography variant="body2" className={styles.userCardDescription}>
-          {truncateDescription(user.description, 150)}
-        </Typography>
-      </CardContent>
-      <Button className={styles.userCardButton} onClick={handleOpenModal}>View More</Button>
-      <Modal
-        open={openModal}
-        onClose={handleCloseModal}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box className={styles.userCardModal}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
+    <Card className={styles.userCard} sx={{ borderRadius: '5%' }}>
+      <Box className={styles.userCardMedia}>
+        <Image src={user.avatar} alt={`${user.firstname} ${user.lastname}`} />
+      </Box>
+      <Box className={styles.userCardContentContainer}>
+        <CardContent className={styles.userCardContent}>
+          <Typography gutterBottom variant="h5" component="div" className={styles.userCardTitle}>
             {user.firstname} {user.lastname}
           </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            {user.description}
+          <Typography variant="body2" className={styles.userCardDescription}>
+            {truncateDescription(user.description, 150)}
           </Typography>
-          <Button onClick={handleCloseModal}>Close</Button>
-        </Box>
-      </Modal>
+        </CardContent>
+        <CardActions className={styles.userCardActions}>
+          <Button variant="contained" className={styles.userCardButton} sx={{textTransform: "capitalize"}} onClick={handleOpenModal}>View More</Button>
+        </CardActions>
+      </Box>
+      <UserModal 
+        open={openModal} 
+        handleClose={handleCloseModal} 
+        user={user}
+      />
     </Card>
   );
 };
